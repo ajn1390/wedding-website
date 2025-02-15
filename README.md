@@ -1,2 +1,2 @@
 # wedding-website
-Wedding website project in Python and Django
+Wedding website project in Python and FastAPI
