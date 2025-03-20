@@ -1,0 +1,5 @@
+# NOTES FOR LEARNING
+
+In SQLAlchemy, tables are represented by model classes, and columns are attributes of these classes.
+Each column corresponds to a field in the table. 
+You can specify the data type, constraints, and other attributes for each column using SQLAlchemy’s column types.
