@@ -1,24 +1,42 @@
 """
 Name model.
 """
-from typing import Optional
-# from uuid import UUID
 
-from app.models.base import AppBaseModel
+from typing import Optional
+
+from src.backend.app.models.base import AppBaseModel
 
 
 class NameBase(AppBaseModel):
     """
-    Base class for Name objects.
+    Base class for Name objects. Don't return ID.
     """
-    first: str
-    last: str
-    alternate_first: Optional[str] = None
-    altnerate_last: Optional[str] = None
+
+    first_name: str
+    last_name: str
+    alternate_first_name: Optional[str] = None
+    alternate_last_name: Optional[str] = None
 
 
 class NameCreate(NameBase):
     """
     Create model for Name objects.
     """
+
     pass
+
+
+class NameUpdate(AppBaseModel):
+    """
+    Base class for Name objects.
+    """
+
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    alternate_first_name: Optional[str] = None
+    alternate_last_name: Optional[str] = None
+
+
+class ReadName(NameBase):
+    class Config:
+        orm_mode = True

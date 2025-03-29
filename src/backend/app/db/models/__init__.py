@@ -2,9 +2,6 @@
 Database storage models for the backend API.
 """
 
-from app.db.models.name import Name
+from src.backend.app.db.models.name import Name
 
-
-__all__ = [
-    'Name'
-]
+__all__ = ["Name"]
