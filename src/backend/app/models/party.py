@@ -1,8 +1,6 @@
-from typing import Optional
-
 from pydantic import BaseModel
 
-from backend.app.models.guest import GuestRead
+from src.backend.app.models.guest import GuestRead
 
 
 class PartyBase(BaseModel):
@@ -12,8 +10,8 @@ class PartyBase(BaseModel):
 
 
 class PartyCreate(PartyBase):
-    primary_guest_id = int
-    secondary_guest_id = Optional[int] = None
+    primary_guest_id: int
+    secondary_guest_id: int | None = None
 
 
 class PartyRead(PartyBase):
