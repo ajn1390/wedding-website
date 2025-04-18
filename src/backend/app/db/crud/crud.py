@@ -1,4 +1,4 @@
-from sqlalchemy import or_
+from sqlalchemy import or_, select
 from sqlalchemy.orm import Session
 
 from src.backend.app.db.models.contact_info import ContactInfo
@@ -8,7 +8,11 @@ from src.backend.app.models.guest import GuestCreate
 
 
 def guest_email_exists(db: Session, email: str) -> bool:
-    return db.query(ContactInfo).filter(ContactInfo.email == email).first() is not None
+    # return db.query(ContactInfo).filter(ContactInfo.email == email).first() is not None
+
+    stmt = select(ContactInfo).where(ContactInfo.email == email)
+    result = db.execute(stmt).first()
+    return result is not None
 
 
 def get_guest_by_email(db: Session, email: str) -> Guest | None:
