@@ -37,8 +37,9 @@ def guest_create(db: Session, guest_data: GuestCreate) -> Guest:
     )
 
     db.add(new_guest)
-    db.commit()
-    db.refresh(new_guest)
+    # db.commit()
+    # db.refresh(new_guest)
+    db.flush()  # Assign id to Guest obj without committing
 
     contact = ContactInfo(
         guest_id=new_guest.id,
@@ -48,8 +49,8 @@ def guest_create(db: Session, guest_data: GuestCreate) -> Guest:
     )
 
     db.add(contact)
-    db.commit
-    db.refresh(contact)  # need?
+    db.commit()
+    db.refresh(new_guest)  # need?
 
     return new_guest
 

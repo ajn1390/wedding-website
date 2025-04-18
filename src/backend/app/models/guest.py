@@ -13,7 +13,7 @@ class GuestBase(BaseModel):
     first_name: str = Field(...)
     last_name: str = Field(...)
 
-    model_config = {"from_attributes": True}
+    # model_config = {"from_attributes": True}
 
 
 class GuestCreate(GuestBase):
@@ -26,3 +26,5 @@ class GuestRead(GuestBase):
     id: int
     is_primary: bool
     contact: ContactInfoRead
+
+    model_config = {"from_attributes": True}
