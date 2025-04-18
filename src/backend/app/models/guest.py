@@ -17,7 +17,7 @@ class GuestBase(BaseModel):
 
 
 class GuestCreate(GuestBase):
-    id: int
+    # id: int
     is_primary: bool
     contact: ContactInfoCreate
 
