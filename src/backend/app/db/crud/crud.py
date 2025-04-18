@@ -33,7 +33,7 @@ def guest_create(db: Session, guest_data: GuestCreate) -> Guest:
     new_guest = Guest(
         first_name=guest_data.first_name,
         last_name=guest_data.last_name,
-        primary_guest=guest_data.is_primary,
+        is_primary=guest_data.is_primary,
     )
 
     db.add(new_guest)
@@ -44,7 +44,7 @@ def guest_create(db: Session, guest_data: GuestCreate) -> Guest:
         guest_id=new_guest.id,
         email=guest_data.contact.email,
         country_code=guest_data.contact.country_code,
-        phone=guest_data.contact.cell_number,
+        cell_number=guest_data.contact.cell_number,
     )
 
     db.add(contact)
