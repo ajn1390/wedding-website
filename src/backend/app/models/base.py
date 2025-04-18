@@ -1,5 +1,6 @@
 """
 App Base model class. Maybe this should be called schemas?
+Do I even need this orjson?
 """
 
 import typing as tp
@@ -13,6 +14,7 @@ def orjson_dumps(v: tp.Any, *, default: tp.Optional[tp.Callable]) -> str:
     return orjson.dumps(v, default=default).decode()
 
 
+# do I really need this?
 class AppBaseModel(BaseModel):
     """
     Base model class for application models.
