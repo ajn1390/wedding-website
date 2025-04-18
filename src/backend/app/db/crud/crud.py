@@ -8,7 +8,7 @@ from src.backend.app.models.guest import GuestCreate
 
 
 def guest_email_exists(db: Session, email: str) -> bool:
-    return db.query(ContactInfo).filter(ContactInfo.email == email).first()
+    return db.query(ContactInfo).filter(ContactInfo.email == email).first() is not None
 
 
 def get_guest_by_email(db: Session, email: str) -> Guest | None:
@@ -33,7 +33,7 @@ def guest_create(db: Session, guest_data: GuestCreate) -> Guest:
     new_guest = Guest(
         first_name=guest_data.first_name,
         last_name=guest_data.last_name,
-        primary_guest=guest_data.is_primary,
+        is_primary=guest_data.is_primary,
     )
 
     db.add(new_guest)
@@ -45,7 +45,7 @@ def guest_create(db: Session, guest_data: GuestCreate) -> Guest:
         guest_id=new_guest.id,
         email=guest_data.contact.email,
         country_code=guest_data.contact.country_code,
-        phone=guest_data.contact.cell_number,
+        cell_number=guest_data.contact.cell_number,
     )
 
     db.add(contact)
@@ -56,7 +56,7 @@ def guest_create(db: Session, guest_data: GuestCreate) -> Guest:
 
 
 def create_party_from_primary_guest(db: Session, guest: Guest) -> Party:
-    party = Party(primary_guest_id=guest.id, party_label=guest.last_name)
+    party = Party(primary_guest_id=guest.id, label=guest.last_name)
     db.add(party)
     db.commit()
     db.refresh(party)

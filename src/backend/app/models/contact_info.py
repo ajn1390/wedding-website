@@ -15,3 +15,5 @@ class ContactInfoCreate(ContactInfoBase):
 
 class ContactInfoRead(ContactInfoBase):
     guest_id: int
+
+    model_config = {"from_attributes": True}
