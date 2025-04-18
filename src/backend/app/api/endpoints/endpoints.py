@@ -22,6 +22,11 @@ init_db()
 
 @router.post("/guests/", response_model=GuestRead)
 async def create_guest(guest_data: GuestCreate, db: Session = Depends(get_db)):
+    print(
+        "EXISTS? ",
+        guest_email_exists(db, guest_data.contact.email),
+        guest_data.contact.email,
+    )
     if guest_email_exists(db, guest_data.contact.email):
         raise HTTPException(
             status_code=404,
