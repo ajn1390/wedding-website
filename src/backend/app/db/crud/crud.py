@@ -8,7 +8,7 @@ from src.backend.app.models.guest import GuestCreate
 
 
 def guest_email_exists(db: Session, email: str) -> bool:
-    return db.query(ContactInfo).filter(ContactInfo.email == email).first
+    return db.query(ContactInfo).filter(ContactInfo.email == email).first()
 
 
 def get_guest_by_email(db: Session, email: str) -> Guest | None:
