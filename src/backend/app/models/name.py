@@ -1,42 +1,54 @@
-"""
-Name model.
-"""
+# """
+# Name model.
+# """
 
-from typing import Optional
+# from typing import Optional
 
-from src.backend.app.models.base import AppBaseModel
-
-
-class NameBase(AppBaseModel):
-    """
-    Base class for Name objects. Don't return ID.
-    """
-
-    first_name: str
-    last_name: str
-    alternate_first_name: Optional[str] = None
-    alternate_last_name: Optional[str] = None
+# from pydantic import BaseModel, Field
 
 
-class NameCreate(NameBase):
-    """
-    Create model for Name objects.
-    """
+# class NameBase(BaseModel):
+#     """
+#     Base class for Name objects. Don't return ID.
+#     """
 
-    pass
-
-
-class NameUpdate(AppBaseModel):
-    """
-    Base class for Name objects.
-    """
-
-    first_name: Optional[str] = None
-    last_name: Optional[str] = None
-    alternate_first_name: Optional[str] = None
-    alternate_last_name: Optional[str] = None
+#     first_name: str = Field(...)
+#     last_name: str = Field(...)
+#     # alternate_first_name: Optional[str] = None
+#     # alternate_last_name: Optional[str] = None
+#     # dup_record_question = Optional[str] = None
+#     # dup_record_answer = Optional[str] = None
 
 
-class ReadName(NameBase):
-    class Config:
-        orm_mode = True
+# class NameCreate(NameBase):
+#     """
+#     Create model for Name objects.
+#     """
+
+#     dup_record_answer = Optional[str] = None
+
+#     pass
+
+
+# class NameAdmin(NameCreate):
+#     id: int
+#     alternate_first_name: Optional[list[str]] = None
+#     alternate_last_name: Optional[list[str]] = None
+#     dup_record_question = Optional[str] = None
+#     dup_record_answer = Optional[str] = None
+
+#     model_config = {"from_attributes": True}
+
+
+# class NameUpdate(NameBase):
+#     """
+#     Base class for Name objects.
+#     """
+
+#     dup_record_answer = Optional[str] = None
+
+#     pass
+
+
+# class NameOut(NameBase):
+#     model_config = {"from_attributes": True}
