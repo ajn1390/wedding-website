@@ -18,7 +18,19 @@ def guest_email_exists(db: Session, email: str) -> bool:
 def get_guest_by_email(db: Session, email: str) -> Guest | None:
     contact = db.query(ContactInfo).filter(ContactInfo.email == email).first()
     return contact.guest if contact else None
-    # return contact?
+
+
+def delete_guest_info(db: Session, id: int) -> Guest | None:
+    guest = db.query(Guest).filter(Guest.id == id).first()
+    if not guest:
+        return None
+
+    # if guest.contact_info:
+    #     db.delete(guest.contact_info)
+
+    db.delete(guest)
+    db.commit()
+    return guest
 
 
 def get_party_by_guest_id(db: Session, guest_id: int) -> Party | None:
@@ -85,3 +97,14 @@ def assign_secondary_guest_to_party(
     db.commit()
     db.refresh(party)
     return party
+
+
+def get_contact_info_by_id(db: Session, id: int) -> ContactInfo | None:
+    guest = db.query(Guest).filter(Guest.id == id).first()
+    if not guest:
+        return None
+    return guest.contact
+
+
+def get_all_guest_data_by_id(db: Session, id: int) -> Guest | None:
+    return db.query(Guest).filter(Guest.id == id).first()
