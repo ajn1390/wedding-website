@@ -17,3 +17,4 @@ class PartyCreate(PartyBase):
 class PartyRead(PartyBase):
     id: int
     guests: list[GuestRead]
+    model_config = {"from_attributes": True}

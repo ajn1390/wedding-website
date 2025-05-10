@@ -48,7 +48,7 @@ async def read_guest_by_id(guest_id: int, db: Session = Depends(get_db)):
     return guest
 
 
-@router.get("/guests/by-email", response_model=GuestRead)
+@router.get("/guests/by-email/{email}", response_model=GuestRead)
 async def admin_guest_by_email(email: str, db: Session = Depends(get_db)):
     guest = get_guest_by_email(db, email)
     if not guest:
@@ -93,7 +93,7 @@ async def assign_secondary_guest(
     return party_guests(party)
 
 
-@router.get("/parties/by-email", response_model=PartyRead)
+@router.get("/parties/by-email/{email}", response_model=PartyRead)
 async def get_party_guests_by_email(email: str, db: Session = Depends(get_db)):
     guest = get_guest_by_email(db, email)
     if not guest:
