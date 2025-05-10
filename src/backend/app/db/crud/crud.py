@@ -34,6 +34,7 @@ def delete_guest_info(db: Session, id: int) -> Guest | None:
 
 
 def get_party_by_guest_id(db: Session, guest_id: int) -> Party | None:
+    print("GUEST ID", guest_id)
     return (
         db.query(Party)
         .filter(
