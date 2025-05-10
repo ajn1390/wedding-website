@@ -4,9 +4,10 @@ from src.backend.app.models.guest import GuestRead
 
 
 class PartyBase(BaseModel):
+    id: int
     label: str
 
-    model_config = {"from_attributes": True}
+    # model_config = {"from_attributes": True}
 
 
 class PartyCreate(PartyBase):
@@ -15,6 +16,7 @@ class PartyCreate(PartyBase):
 
 
 class PartyRead(PartyBase):
-    id: int
+    # id: int
+    # label: str
     guests: list[GuestRead]
     model_config = {"from_attributes": True}

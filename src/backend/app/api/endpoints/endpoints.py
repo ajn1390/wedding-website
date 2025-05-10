@@ -66,15 +66,14 @@ async def delete_guest(guest_id: int, db: Session = Depends(get_db)):
     return guest
 
 
-def party_guests(party: Party):
+def party_guests(party: Party) -> PartyRead:
     party_guests = []
-
     if party.primary_guest:
         party_guests.append(party.primary_guest)
     if party.secondary_guest:
         party_guests.append(party.secondary_guest)
 
-    return {"id": party.id, "party_label": party.label, "guests": party_guests}
+    return PartyRead(label=party.label, id=party.id, guests=party_guests)
 
 
 @router.post("/parties/assign-secondary/")
